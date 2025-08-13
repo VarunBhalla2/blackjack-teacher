@@ -30,11 +30,11 @@ body {
   top: 50%;
   transform: translateY(-50%);
   width: 120px;
-  height: 180px;
+  height: 240px;
   background-image: url('images/cards/back.png');
   background-size: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.55); /* neutral shadow, no green tint */
-  border-radius: 10px;
+  box-shadow: 0 0px 0px rgba(0,0,0,0.55); /* neutral shadow, no green tint */
+  border-radius: 0px;
   z-index: 50;
 }
 
