@@ -1,64 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blackjack Simulator</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Educational Simulator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
+    <!-- Header -->
     <header>
-      <h1>Blackjack Simulator</h1>
-      <div class="controls-top">
-        <label>Starting Balance:
-          <input id="starting-balance" type="number" min="1" value="1000">
-        </label>
-        <label>Bet Amount:
-          <input id="bet-amount" type="number" min="1" value="50">
-        </label>
-        <button id="restart-btn">Restart</button>
-      </div>
+        <h1>Learn Blackjack</h1>
+        <div class="score-tracker">
+            <div class="score-item">
+                <span class="score-label">Wins:</span>
+                <span id="wins" class="score-value">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Losses:</span>
+                <span id="losses" class="score-value">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Draws:</span>
+                <span id="draws" class="score-value">0</span>
+            </div>
+        </div>
     </header>
 
-    <main>
-      <section class="table-area">
+    <!-- Game Container -->
+    <div class="game-container">
         <div class="table">
-          <div id="dealer-area" class="area">
-            <div class="label">Dealer</div>
-            <div class="hand" id="dealer-hand"></div>
-            <div class="hand-value" id="dealer-value"></div>
-          </div>
+            <!-- Game Status Message -->
+            <div id="gameMessage" class="game-message hidden"></div>
 
-          <div class="deck" id="deck">
-            <div class="deck-top">🂠</div>
-          </div>
+            <!-- Dealer Section -->
+            <div class="dealer-section">
+                <h2 class="section-title">Dealer</h2>
+                <div class="hand-value-display">
+                    <span class="value-label">Hand Value:</span>
+                    <span id="dealerValue" class="value">-</span>
+                </div>
+                <div id="dealerCards" class="cards-area"></div>
+            </div>
 
-          <div id="player-area" class="area">
-            <div class="label">Player</div>
-            <div class="hands" id="player-hands"></div>
-            <div class="balance-row">
-              <div>Balance: <span id="balance">0</span></div>
-              <div>Current Bet: <span id="current-bet">0</span></div>
+            <!-- Divider -->
+            <div class="table-divider"></div>
+
+            <!-- Player Section -->
+            <div class="player-section">
+                <h2 class="section-title">Player</h2>
+                <div class="hand-value-display">
+                    <span class="value-label">Hand Value:</span>
+                    <span id="playerValue" class="value">-</span>
+                </div>
+                <div id="playerCards" class="cards-area"></div>
+                
+                <!-- Split Hand (hidden by default) -->
+                <div id="splitSection" class="split-section hidden">
+                    <h3 class="section-title">Split Hand</h3>
+                    <div class="hand-value-display">
+                        <span class="value-label">Hand Value:</span>
+                        <span id="splitValue" class="value">-</span>
+                    </div>
+                    <div id="splitCards" class="cards-area"></div>
+                </div>
             </div>
-            <div class="message" id="message"></div>
-            <div class="buttons-row">
-              <button id="deal-btn">Deal</button>
-              <button id="hit-btn" disabled>Hit</button>
-              <button id="stand-btn" disabled>Stand</button>
-              <button id="double-btn" disabled>Double</button>
-              <button id="split-btn" disabled>Split</button>
+
+            <!-- Game Controls -->
+            <div class="controls">
+                <button id="dealBtn" class="btn btn-primary" onclick="game.dealInitialCards()">
+                    Deal New Hand
+                </button>
+                <button id="hitBtn" class="btn btn-action" onclick="game.hit()" disabled>
+                    Hit
+                </button>
+                <button id="standBtn" class="btn btn-action" onclick="game.stand()" disabled>
+                    Stand
+                </button>
+                <button id="doubleBtn" class="btn btn-special" onclick="game.doubleDown()" disabled>
+                    Double Down
+                </button>
+                <button id="splitBtn" class="btn btn-special" onclick="game.split()" disabled>
+                    Split
+                </button>
+                <button id="resetBtn" class="btn btn-secondary" onclick="game.resetGame()">
+                    Reset Game
+                </button>
             </div>
-          </div>
         </div>
-      </section>
-    </main>
+    </div>
 
-    <footer>
-      <small>Rules: Dealer stands on all 17s. Blackjack pays 3:2. No real money.</small>
-    </footer>
-  </div>
+    <!-- Rules Panel -->
+    <div class="rules-panel">
+        <h3>Quick Rules</h3>
+        <ul>
+            <li>Goal: Get closer to 21 than the dealer without going over</li>
+            <li>Card Values: 2-10 = face value, J/Q/K = 10, Ace = 1 or 11</li>
+            <li>Blackjack: Ace + 10-value card = instant win (unless dealer also has blackjack)</li>
+            <li>Dealer must hit on 16 and below, stand on 17 and above</li>
+            <li><strong>Hit:</strong> Take another card</li>
+            <li><strong>Stand:</strong> Keep your current hand</li>
+            <li><strong>Double Down:</strong> Take one more card and stand</li>
+            <li><strong>Split:</strong> Split matching cards into two hands</li>
+        </ul>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
