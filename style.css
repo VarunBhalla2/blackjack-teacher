@@ -45,7 +45,7 @@ body {
   background-image: url('images/cards/back.png');
   background-size: cover;
   box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-  border-radius: 8px;
+  border-radius: 1px;
   z-index: 50;
 }
 
