@@ -1,67 +1,107 @@
+/* page + table basics (use the rest of your style or replace) */
 body {
   margin: 0;
-  background: #05420b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(#05280a, #0c5a1b);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .table {
   position: relative;
-  width: 90vw;
-  height: 70vh;
-  max-width: 1200px;
-  max-height: 800px;
-  background: #064a0d;
+  width: 92vw;
+  height: 82vh;
+  max-width: 1300px;
+  max-height: 900px;
+  background: radial-gradient(circle at 50% 20%, #0d4b15 0%, #08320a 70%);
   border-radius: 50% 50% 0 0;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
-  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6), inset 0 40px 120px rgba(255,255,255,0.02);
+  overflow: visible;
 }
 
+/* Title */
 .table-title {
   position: absolute;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Cinzel', serif;
-  font-size: 3vw;
-  color: gold;
-  text-shadow: 2px 2px 4px #000;
+  font-family: "Cinzel", serif;
+  color: #f0d76b;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  font-size: clamp(26px, 3vw, 56px);
+  letter-spacing: 6px;
 }
 
+/* Deck */
 .deck {
   position: absolute;
+  left: 48px;
   top: 50%;
-  left: 5%;
-  width: 80px;
-  height: 120px;
-  background: url('images/cards/back.png') no-repeat center / cover;
   transform: translateY(-50%);
-  cursor: pointer;
+  width: 84px;
+  height: 120px;
+  background-image: url('images/cards/back.png');
+  background-size: cover;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  border-radius: 8px;
+  z-index: 50;
 }
 
+/* Hands */
 .hand {
   position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
   pointer-events: none;
+  height: 140px; /* reserve vertical space */
 }
+.dealer-hand { top: 16%; }
+.player-hand { bottom: 16%; }
 
-.dealer-hand { top: 20%; }
-.player-hand { bottom: 20%; }
-
+/* Cards (absolutely positioned for animation) */
 .card {
-  width: 80px;
+  width: 84px;
   height: 120px;
   position: absolute;
-  backface-visibility: hidden;
   background-size: cover;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  border-radius: 8px;
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 300ms ease, left 420ms ease, top 420ms ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+  z-index: 100;
+  opacity: 0;
 }
 
+/* final state */
 .card.dealt {
   opacity: 1;
-  transform: translate(0,0) rotate(0deg);
+  transform: rotate(0deg) scale(1);
 }
+
+/* face-down special style (hole card) */
+.card.face-down {
+  /* keep back shown; optionally add a slight tilt */
+  transform: rotate(-6deg);
+  z-index: 80;
+}
+
+/* Deal button */
+.deal-btn {
+  position: absolute;
+  right: 48px;
+  bottom: 40px;
+  padding: 14px 22px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(180deg,#ffd54a,#f0b90f);
+  color: #08110a;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  cursor: pointer;
+  z-index: 200;
+}
+.deal-btn:active { transform: translateY(2px); }
