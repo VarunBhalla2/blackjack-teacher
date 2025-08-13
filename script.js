@@ -15,7 +15,7 @@ function cardImage(rank, suit) {
 const CARD_WIDTH = 240;
 const CARD_HEIGHT = 240;
 const CARD_SPACING = 9; // same as CSS margin
-const ANIM_MS = 250; // 0.25s animation
+const ANIM_MS = 500; // 0.25s animation
 
 const order = ['player', 'dealer', 'player', 'dealer'];
 
