@@ -12,7 +12,7 @@ function cardImage(rank, suit) {
 }
 
 // sizing constants (must match CSS)
-const CARD_WIDTH = 120;
+const CARD_WIDTH = 180;
 const CARD_HEIGHT = 180;
 const CARD_SPACING = 18; // same as CSS margin
 const ANIM_MS = 250; // 0.25s animation
