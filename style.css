@@ -9,6 +9,8 @@ body {
   justify-content: center;
 }
 
+/* overall layout kept from your previous style, only card/deck/button tweaks shown */
+
 .table {
   position: relative;
   width: 92vw;
@@ -21,31 +23,18 @@ body {
   overflow: visible;
 }
 
-/* Title */
-.table-title {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: "Cinzel", serif;
-  color: #f0d76b;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-  font-size: clamp(26px, 3vw, 56px);
-  letter-spacing: 6px;
-}
-
-/* Deck */
+/* Deck — slightly larger so it matches the larger cards */
 .deck {
   position: absolute;
   left: 48px;
   top: 50%;
   transform: translateY(-50%);
-  width: 84px;
-  height: 120px;
+  width: 120px;
+  height: 180px;
   background-image: url('images/cards/back.png');
   background-size: cover;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-  border-radius: 1px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.55); /* neutral shadow, no green tint */
+  border-radius: 10px;
   z-index: 50;
 }
 
@@ -56,36 +45,44 @@ body {
   display: flex;
   justify-content: center;
   pointer-events: none;
-  height: 140px; /* reserve vertical space */
+  height: 200px;
 }
-.dealer-hand { top: 16%; }
-.player-hand { bottom: 16%; }
+.dealer-hand { top: 14%; }
+.player-hand { bottom: 14%; }
 
-/* Cards (absolutely positioned for animation) */
+/* Card styling — LARGER + neutral shadow */
 .card {
-  width: 84px;
-  height: 120px;
+  width: 120px;
+  height: 180px;
   position: absolute;
   background-size: cover;
-  border-radius: 8px;
+  border-radius: 10px;
   transform-origin: center;
-  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 300ms ease, left 420ms ease, top 420ms ease;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
-  z-index: 100;
+  /* animation tuned to ~0.25s; smooth easing */
+  transition: transform 250ms cubic-bezier(.2,.9,.25,1), opacity 180ms ease, left 250ms ease, top 250ms ease;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.55); /* neutral darker shadow, removed green tint */
+  z-index: 200;
   opacity: 0;
 }
 
-/* final state */
+/* card final visible state */
 .card.dealt {
   opacity: 1;
   transform: rotate(0deg) scale(1);
 }
 
-/* face-down special style (hole card) */
+/* face-down (hole) style — slightly rotated to differentiate */
 .card.face-down {
-  /* keep back shown; optionally add a slight tilt */
-  transform: rotate(-6deg);
-  z-index: 80;
+  transform: rotate(-6deg) scale(1);
+  z-index: 150;
+}
+
+/* placeholder occupies space in hand layout (not visible) */
+.card-placeholder {
+  width: 120px;
+  height: 180px;
+  margin: 0 18px; /* spacing between cards */
+  visibility: hidden;
 }
 
 /* Deal button */
@@ -102,6 +99,6 @@ body {
   font-weight: 700;
   box-shadow: 0 8px 30px rgba(0,0,0,0.45);
   cursor: pointer;
-  z-index: 200;
+  z-index: 400;
 }
 .deal-btn:active { transform: translateY(2px); }
