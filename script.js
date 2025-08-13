@@ -1,38 +1,52 @@
-const dealerHandEl = document.getElementById("dealer-hand");
-const playerHandEl = document.getElementById("player-hand");
-const dealBtn = document.getElementById("deal-btn");
+const deckEl = document.querySelector('.deck');
+const playerHand = document.querySelector('.player-hand');
+const dealerHand = document.querySelector('.dealer-hand');
+const dealBtn = document.getElementById('deal');
 
-const suits = ["♠", "♥", "♦", "♣"];
-const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-
-function getRandomCard() {
-    const suit = suits[Math.floor(Math.random() * suits.length)];
-    const value = values[Math.floor(Math.random() * values.length)];
-    return value + suit;
+const cardBack = 'images/cards/back.png';
+function cardImage(rank, suit) {
+  return `images/cards/card_${suit}_${rank}.png`;
 }
 
-function createCardElement(card) {
-    const cardEl = document.createElement("div");
-    cardEl.classList.add("card");
-    cardEl.textContent = card;
-    return cardEl;
+const order = ['player', 'dealer', 'player', 'dealer'];
+
+function dealCard(target, rank = 'A', suit = 'spades') {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.style.backgroundImage = `url('${cardBack}')`;
+
+  document.body.appendChild(card);
+  const deckRect = deckEl.getBoundingClientRect();
+  card.style.left = `${deckRect.left}px`;
+  card.style.top = `${deckRect.top}px`;
+
+  requestAnimationFrame(() => {
+    const handEl = target === 'player' ? playerHand : dealerHand;
+    handEl.appendChild(card);
+    const rect = card.getBoundingClientRect();
+    card.style.left = `${rect.left}px`;
+    card.style.top = `${rect.top}px`;
+    card.classList.add('dealt');
+    setTimeout(() => {
+      card.style.backgroundImage = `url('${cardImage(rank, suit)}')`;
+    }, 400);
+  });
 }
 
-function dealCards() {
-    dealerHandEl.innerHTML = "";
-    playerHandEl.innerHTML = "";
+// New reusable deal function
+function deal() {
+  playerHand.innerHTML = '';
+  dealerHand.innerHTML = '';
+  const ranks = ['A','02','03','04','05','06','07','08','09','10','J','Q','K'];
+  const suits = ['spades','hearts','diamonds','clubs'];
 
-    // Deal 2 cards to player and dealer
-    for (let i = 0; i < 2; i++) {
-        setTimeout(() => {
-            dealerHandEl.appendChild(createCardElement(getRandomCard()));
-        }, i * 250); // 0.25s delay between each card
-    }
-    for (let i = 0; i < 2; i++) {
-        setTimeout(() => {
-            playerHandEl.appendChild(createCardElement(getRandomCard()));
-        }, (i + 2) * 250);
-    }
+  order.forEach((recipient, i) => {
+    setTimeout(() => {
+      const r = ranks[Math.floor(Math.random() * ranks.length)];
+      const s = suits[Math.floor(Math.random() * suits.length)];
+      dealCard(recipient, r, s);
+    }, i * 800);
+  });
 }
 
-dealBtn.addEventListener("click", dealCards);
+dealBtn.addEventListener('click', deal);
