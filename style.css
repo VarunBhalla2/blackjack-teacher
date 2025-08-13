@@ -45,7 +45,7 @@ body {
   display: flex;
   justify-content: center;
   pointer-events: none;
-  height: 200px;
+  height: 240px;
 }
 .dealer-hand { top: 14%; }
 .player-hand { bottom: 14%; }
@@ -61,7 +61,7 @@ body {
   /* animation tuned to ~0.25s; smooth easing */
   transition: transform 250ms cubic-bezier(.2,.9,.25,1), opacity 180ms ease, left 250ms ease, top 250ms ease;
   box-shadow: 0 0px 0px rgba(0,0,0,0.55); /* neutral darker shadow, removed green tint */
-  z-index: 200;
+  z-index: 50;
   opacity: 0;
 }
 
