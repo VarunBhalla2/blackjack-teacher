@@ -1,70 +1,88 @@
-body {
-    background-color: #0b3d0b;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: white;
+/* Basic page layout */
+:root{
+  --green:#0a6b3a;
+  --table:#10613b;
+  --card-bg:#ffffff;
+  --accent:#ffd166;
+  --muted:#cfe8d7;
+  --card-width:200px;
+  --card-height:200px;
 }
 
-h1 {
-    margin-bottom: 20px;
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+body{background:linear-gradient(180deg,#0b3a2b 0%, #073023 100%); color:#f5f5f5; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;}
+
+.app{width:1100px; max-width:96vw;}
+header{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+header h1{font-size:1.6rem; letter-spacing:0.6px;}
+.controls-top{display:flex; gap:12px; align-items:center;}
+.controls-top label{font-size:0.9rem; color:var(--muted); display:flex; gap:8px; align-items:center;}
+.controls-top input{width:90px; padding:6px 8px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); color:#fff;}
+
+.controls-top button{padding:8px 12px; border-radius:10px; border:none; background:var(--accent); color:#0b3a2b; cursor:pointer; font-weight:600;}
+
+/* Table area */
+.table-area{background:transparent; padding:10px;}
+.table{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.05)); border-radius:18px; padding:22px; display:grid; grid-template-columns:1fr 160px 1fr; gap:12px; align-items:start; position:relative;}
+
+/* Areas */
+.area{min-height:260px; display:flex; flex-direction:column; align-items:center; gap:12px;}
+.label{font-weight:700; color:var(--muted); margin-bottom:6px;}
+.hand, .hands{display:flex; gap:12px; align-items:flex-end; min-height:220px;}
+
+
+/* Card visuals - size locked 200x200, NO SHADOW */
+.card{
+  width:var(--card-width);
+  height:var(--card-height);
+  border-radius:14px;
+  background:linear-gradient(180deg,#ffffff,#f7f7f7);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:12px;
+  box-sizing:border-box;
+  color:#111;
+  font-weight:700;
+  position:absolute; /* positioned during dealing */
+  transform-origin:center center;
+  transition: transform 250ms cubic-bezier(.2,.9,.25,1), opacity 180ms ease, left 250ms ease, top 250ms ease;
+  /* No shadows as requested */
+  outline: 1px solid rgba(0,0,0,0.06);
 }
 
-.game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* Card front layout */
+.card .corner{font-size:20px; line-height:1}
+.card .center-suit{display:flex; align-items:center; justify-content:center; font-size:64px; opacity:0.95;}
+.card.red{color:#b30000;}
+.card.black{color:#111;}
 
-.hand-container {
-    margin: 20px 0;
-}
+/* Deck - small visual */
+.deck{display:flex; align-items:center; justify-content:center; height:260px;}
+.deck-top{width:100px; height:140px; border-radius:10px; background:linear-gradient(180deg,#0b3a2b,#065035); display:flex; align-items:center; justify-content:center; color:#fff; font-size:40px;}
 
-.hand {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
-    min-height: 160px;
-}
+/* Buttons and message */
+.buttons-row{display:flex; gap:8px; margin-top:8px;}
+.buttons-row button{padding:10px 14px; border-radius:10px; border:none; cursor:pointer; background:#ffd166; color:#073023; font-weight:700; transition:transform 0.12s ease; min-width:84px;}
+.buttons-row button[disabled]{opacity:0.45; cursor:not-allowed; transform:none;}
 
-.card {
-    width: 100px; /* Bigger cards */
-    height: 140px;
-    background-color: white;
-    border-radius: 8px;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: black;
-    transform: translateY(-20px);
-    opacity: 0;
-    animation: dealCard 0.25s ease forwards;
-}
+.balance-row{display:flex; gap:18px; color:var(--muted); font-weight:700; margin-top:8px;}
+.message{min-height:36px; margin-top:8px; color:#fff; font-weight:700; text-align:center;}
 
-@keyframes dealCard {
-    0% {
-        transform: translateY(-20px) scale(0.9);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-}
+/* Player hands layout for multiple hands when splitting */
+.player-hand{position:relative; display:flex; gap:12px; align-items:flex-end; min-width:420px; min-height:220px;}
 
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: gold;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+/* hand card slot container for absolute cards */
+.slot{position:relative; width:420px; height:220px;}
 
-button:hover {
-    background-color: orange;
+/* hand value badges */
+.hand-value{background:rgba(255,255,255,0.06); padding:6px 10px; border-radius:12px; color:var(--muted); font-weight:700;}
+
+/* footer */
+footer{margin-top:12px; color:var(--muted); text-align:center;}
+
+/* Responsive */
+@media (max-width:900px){
+  .table{grid-template-columns:1fr; padding:16px;}
+  .deck{order:3;}
 }

@@ -1,28 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackjack</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blackjack Simulator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="game-container">
-        <h1>Blackjack</h1>
+  <div class="app">
+    <header>
+      <h1>Blackjack Simulator</h1>
+      <div class="controls-top">
+        <label>Starting Balance:
+          <input id="starting-balance" type="number" min="1" value="1000">
+        </label>
+        <label>Bet Amount:
+          <input id="bet-amount" type="number" min="1" value="50">
+        </label>
+        <button id="restart-btn">Restart</button>
+      </div>
+    </header>
 
-        <div class="hand-container">
-            <h2>Dealer</h2>
-            <div id="dealer-hand" class="hand"></div>
+    <main>
+      <section class="table-area">
+        <div class="table">
+          <div id="dealer-area" class="area">
+            <div class="label">Dealer</div>
+            <div class="hand" id="dealer-hand"></div>
+            <div class="hand-value" id="dealer-value"></div>
+          </div>
+
+          <div class="deck" id="deck">
+            <div class="deck-top">🂠</div>
+          </div>
+
+          <div id="player-area" class="area">
+            <div class="label">Player</div>
+            <div class="hands" id="player-hands"></div>
+            <div class="balance-row">
+              <div>Balance: <span id="balance">0</span></div>
+              <div>Current Bet: <span id="current-bet">0</span></div>
+            </div>
+            <div class="message" id="message"></div>
+            <div class="buttons-row">
+              <button id="deal-btn">Deal</button>
+              <button id="hit-btn" disabled>Hit</button>
+              <button id="stand-btn" disabled>Stand</button>
+              <button id="double-btn" disabled>Double</button>
+              <button id="split-btn" disabled>Split</button>
+            </div>
+          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="hand-container">
-            <h2>Player</h2>
-            <div id="player-hand" class="hand"></div>
-        </div>
+    <footer>
+      <small>Rules: Dealer stands on all 17s. Blackjack pays 3:2. No real money.</small>
+    </footer>
+  </div>
 
-        <button id="deal-btn">Deal</button>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
