@@ -28,7 +28,7 @@ body {
   position: absolute;
   left: 48px;
   top: 50%;
-  transform: translateY(-50%);
+  
   width: 240px;
   height: 240px;
   background-image: url('images/cards/back.png');
