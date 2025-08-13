@@ -62,24 +62,29 @@ async function dealCard(target, rank, suit, faceDown = false, indexInHand = 0) {
   const cardEl = createCardElement(rank, suit, faceDown);
   const handEl = (target === 'player') ? playerHand : dealerHand;
 
-  while (handEl.children.length <= indexInHand) {
+  // Ensure placeholders for each card index exist
+  if (!handEl.children[indexInHand]) {
     const ph = document.createElement('div');
     ph.className = 'card-placeholder';
     handEl.appendChild(ph);
   }
 
   const [x, y] = computeHandLandingPosForIndex(handEl, indexInHand);
-  const rotation = (target === 'player') ? (indexInHand * 6 - 6) : (indexInHand * 4 - 2);
+  const rotation = 0; // keep cards flat
 
   await animateCardFromDeckToPos(cardEl, x, y, rotation);
 
+  // Put card into placeholder without deleting previous cards
   const placeholder = handEl.children[indexInHand];
+  placeholder.innerHTML = ''; // only clear that placeholder
   placeholder.appendChild(cardEl);
+
   cardEl.style.left = `0px`;
   cardEl.style.top = `0px`;
   cardEl.style.position = 'absolute';
   cardEl.style.transform = `rotate(${rotation}deg) scale(1)`;
 }
+
 
 function updateHandBadge(handEl, total) {
   let badge = handEl.querySelector('.hand-badge');

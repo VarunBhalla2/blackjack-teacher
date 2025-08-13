@@ -38,33 +38,34 @@ body {
 }
 
 .card {
-  width: 120px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   background-size: cover;
   background-position: center;
   position: absolute;
   transition: all 0.25s ease;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+  border-radius: 0;  /* no rounded edges */
+  box-shadow: none;  /* no shadow */
 }
 
 .card-placeholder {
   position: relative;
-  width: 120px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
 }
+
 
 .deck {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-350px, -50%);
-  width: 120px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   background-image: url('images/cards/back.png');
   background-size: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+  border-radius: 0px;
+  box-shadow: 0 0px 0px rgba(0,0,0,0.5);
 }
 
 #deal {
