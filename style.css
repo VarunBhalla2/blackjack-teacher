@@ -58,7 +58,7 @@ body {
 .deck {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 20px;
   width: 200px;
   height: 200px;
   background-image: url('images/cards/back.png');
