@@ -29,8 +29,8 @@ body {
   left: 48px;
   top: 50%;
   transform: translateY(-50%);
-  width: 210;
-  height: 210;
+  width: 240;
+  height: 240;
   background-image: url('images/cards/back.png');
   background-size: cover;
   box-shadow: 0 0px 0px rgba(0,0,0,0.55); /* neutral shadow, no green tint */
@@ -52,11 +52,11 @@ body {
 
 /* Card styling — LARGER + neutral shadow */
 .card {
-  width: 210px;
-  height: 210px;
+  width: 240px;
+  height: 240px;
   position: absolute;
   background-size: cover;
-  border-radius: 10px;
+  border-radius: 0px;
   transform-origin: center;
   /* animation tuned to ~0.25s; smooth easing */
   transition: transform 250ms cubic-bezier(.2,.9,.25,1), opacity 180ms ease, left 250ms ease, top 250ms ease;
