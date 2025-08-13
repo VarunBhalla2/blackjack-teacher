@@ -1,120 +1,70 @@
 body {
-  background-color: #004d26;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    background-color: #0b3d0b;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
 }
 
-.table {
-  position: relative;
-  width: 900px;
-  height: 600px;
-  background: radial-gradient(circle at center, #006b38, #004d26);
-  border-radius: 50%/35%;
-  border: 10px solid #2b2b2b;
-  box-shadow: 0 0 30px rgba(0,0,0,0.7);
-  overflow: hidden;
+h1 {
+    margin-bottom: 20px;
 }
 
-.dealer-area, .player-area {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.dealer-area { top: 60px; }
-.player-area { bottom: 60px; }
+.hand-container {
+    margin: 20px 0;
+}
 
-.dealer-hand, .player-hand {
-  display: flex;
-  position: relative;
-  min-height: 200px;
-  width: 400px;
-  justify-content: center;
-  align-items: center;
+.hand {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    min-height: 160px;
 }
 
 .card {
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  transition: all 0.25s ease;
-  border-radius: 0;  /* no rounded edges */
-  box-shadow: none;  /* no shadow */
+    width: 100px; /* Bigger cards */
+    height: 140px;
+    background-color: white;
+    border-radius: 8px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: dealCard 0.25s ease forwards;
 }
 
-.card-placeholder {
-  position: relative;
-  width: 200px;
-  height: 200px;
+@keyframes dealCard {
+    0% {
+        transform: translateY(-20px) scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
 }
 
-
-.deck {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-350px, -50%);
-  width: 200px;
-  height: 200px;
-  background-image: url('images/cards/back.png');
-  background-size: cover;
-  border-radius: 0px;
-  box-shadow: 0 0px 0px rgba(0,0,0,0.5);
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: gold;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-#deal {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 30px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  background: #cc0000;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
-}
-
-.hand-badge {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: gold;
-  border-radius: 50%;
-  padding: 6px 12px;
-  font-weight: bold;
-}
-
-.chip {
-  position: absolute;
-  bottom: -50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.chip-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: purple;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chip-amount {
-  margin-top: 5px;
-  font-weight: bold;
-  color: white;
+button:hover {
+    background-color: orange;
 }
