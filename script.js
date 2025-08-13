@@ -3,21 +3,19 @@ const playerHand = document.querySelector('.player-hand');
 const dealerHand = document.querySelector('.dealer-hand');
 const dealBtn = document.getElementById('deal');
 
-// Preload card images from Kenney CC0 pack or SVGs
 const cardBack = 'images/cards/back.png';
-function cardImage(rank, suit){
+function cardImage(rank, suit) {
   return `images/cards/card_${suit}_${rank}.png`;
 }
 
-const order = ['player','dealer','player','dealer'];
+const order = ['player', 'dealer', 'player', 'dealer'];
 
-function dealCard(target, rank='A', suit='S'){
+function dealCard(target, rank = 'A', suit = 'spades') {
   const card = document.createElement('div');
   card.classList.add('card');
   card.style.backgroundImage = `url('${cardBack}')`;
 
   document.body.appendChild(card);
-  // Initial position: on the deck
   const deckRect = deckEl.getBoundingClientRect();
   card.style.left = `${deckRect.left}px`;
   card.style.top = `${deckRect.top}px`;
@@ -29,24 +27,26 @@ function dealCard(target, rank='A', suit='S'){
     card.style.left = `${rect.left}px`;
     card.style.top = `${rect.top}px`;
     card.classList.add('dealt');
-    // Finally change to face
-    setTimeout(()=>{
+    setTimeout(() => {
       card.style.backgroundImage = `url('${cardImage(rank, suit)}')`;
     }, 400);
   });
 }
 
-dealBtn.addEventListener('click', ()=>{
+// New reusable deal function
+function deal() {
   playerHand.innerHTML = '';
   dealerHand.innerHTML = '';
-  order.forEach((rec, i)=>{
-    setTimeout(()=>{
-      // Random rank/suit for demo
-      const ranks = ['A','02','03','04','05','06','07','08','09','10','J','Q','K'];
-      const suits = ['spades','hearts','diamonds','clubs'];
-      const r = ranks[Math.floor(Math.random()*ranks.length)];
-      const s = suits[Math.floor(Math.random()*suits.length)];
-      dealCard(rec, r, s);
+  const ranks = ['A','02','03','04','05','06','07','08','09','10','J','Q','K'];
+  const suits = ['spades','hearts','diamonds','clubs'];
+
+  order.forEach((recipient, i) => {
+    setTimeout(() => {
+      const r = ranks[Math.floor(Math.random() * ranks.length)];
+      const s = suits[Math.floor(Math.random() * suits.length)];
+      dealCard(recipient, r, s);
     }, i * 800);
   });
-});
+}
+
+dealBtn.addEventListener('click', deal);
