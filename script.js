@@ -6,7 +6,7 @@ const dealBtn = document.getElementById('deal');
 // Preload card images from Kenney CC0 pack or SVGs
 const cardBack = 'images/cards/back.png';
 function cardImage(rank, suit){
-  return `images/cards/${rank}${suit}.png`;
+  return `images/cards/card_${suit}_${rank}.png`;
 }
 
 const order = ['player','dealer','player','dealer'];
@@ -42,8 +42,8 @@ dealBtn.addEventListener('click', ()=>{
   order.forEach((rec, i)=>{
     setTimeout(()=>{
       // Random rank/suit for demo
-      const ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-      const suits = ['S','H','D','C'];
+      const ranks = ['A','02','03','04','05','06','07','08','09','10','J','Q','K'];
+      const suits = ['spades','hearts','diamonds','clubs'];
       const r = ranks[Math.floor(Math.random()*ranks.length)];
       const s = suits[Math.floor(Math.random()*suits.length)];
       dealCard(rec, r, s);
