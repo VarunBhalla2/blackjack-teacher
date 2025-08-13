@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blackjack Teacher</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Blackjack Demo</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="table">
-    <div class="table-title">BLACKJACK</div>
-    <div class="deck" title="Deck"></div>
 
-    <div class="hand dealer-hand"></div>
-    <div class="hand player-hand"></div>
-
-    <!-- Deal button (will disappear after first deal) -->
-    <button id="deal" class="deal-btn">Deal</button>
+<div class="table">
+  <div class="dealer-area">
+    <div class="dealer-hand"></div>
   </div>
 
-  <script src="blackjackProbabilities.js"></script>
-  <script src="script.js"></script>
+  <div class="deck"></div>
+
+  <div class="player-area">
+    <div class="player-hand"></div>
+  </div>
+
+  <button id="deal">DEAL</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
